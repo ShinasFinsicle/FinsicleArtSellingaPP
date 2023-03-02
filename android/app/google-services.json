@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "796861942021",
+    "project_id": "art-selling-app",
+    "storage_bucket": "art-selling-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796861942021:android:287db70689b121adbd4f6c",
+        "android_client_info": {
+          "package_name": "com.finsicle.artselling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796861942021-5kr7s4unghvljue09ft6e0udt1jo3gsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwtCQ2dBja1X4nY3uqCakdjfrJe8UV2KQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796861942021-5kr7s4unghvljue09ft6e0udt1jo3gsj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
