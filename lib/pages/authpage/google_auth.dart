@@ -42,11 +42,7 @@ class GoogleAuthPage extends StatelessWidget {
                 SignInButton(
                   Buttons.google,
                   onPressed: () {
-                    value.googleLogin1(); // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => const ArtlistScreen(),
-                    //     ));
+                    value.googleLogin1();
                   },
                 ),
               ],

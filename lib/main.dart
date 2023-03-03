@@ -1,5 +1,6 @@
 import 'package:add/artlistingpages/artlist_page.dart';
 import 'package:add/constants/text.dart/colors.dart';
+import 'package:add/pages/authpage/google_auth.dart';
 
 import 'package:add/pages/letsstart/lets_start.dart';
 import 'package:add/provider/google_signin.dart';
@@ -30,6 +31,11 @@ class MyApp extends StatelessWidget {
             textTheme:
                 const TextTheme(bodyLarge: TextStyle(color: kPrimaryTextcolor)),
             appBarTheme: const AppBarTheme(
+                titleTextStyle: TextStyle(
+                  color: kPrimaryTextcolor,
+                  fontFamily: ('Poppins'),
+                ),
+                iconTheme: IconThemeData(color: kPrimaryTextcolor),
                 backgroundColor: Colors.white,
                 elevation: 1.0 // set the background color to white
                 ),
@@ -61,7 +67,7 @@ class ListenAuthChanges extends StatelessWidget {
                 child: Text('Something Went Wrong!'),
               );
             } else {
-              return const LetsStart();
+              return const GoogleAuthPage();
             }
           }),
     );

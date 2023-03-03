@@ -30,6 +30,8 @@ environment:
 dependencies:
   cloud_firestore: ^4.4.3
   cupertino_icons: ^1.0.2
+  curved_drawer_fork: ^0.0.1+1
+  elastic_drawer: ^2.0.2
   firebase_auth: ^4.2.9
   firebase_core: ^2.7.0
   firebase_storage: ^11.0.14
