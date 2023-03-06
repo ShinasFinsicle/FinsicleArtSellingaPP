@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
           theme: ThemeData(
+            fontFamily: ('Poppins reg'),
             textTheme:
                 const TextTheme(bodyLarge: TextStyle(color: kPrimaryTextcolor)),
             appBarTheme: const AppBarTheme(

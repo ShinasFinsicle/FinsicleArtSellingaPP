@@ -2,6 +2,8 @@ import 'package:add/pages/adminpage/art_posting_page.dart';
 import 'package:add/widgets/drawer/drawer_Items_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../user_profle/user_profile.dart';
+
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
   @override
@@ -16,7 +18,8 @@ class DrawerWidget extends StatelessWidget {
             icon: const Icon(Icons.person),
             title: "Profile",
             ontap: () {
-              print("1");
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()));
             },
           ),
           DrawerItemsWidget(
@@ -25,8 +28,7 @@ class DrawerWidget extends StatelessWidget {
               ontap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const ArtPostingPage()),
+                  MaterialPageRoute(builder: (context) => ArtPostingPage()),
                 );
               }),
           DrawerItemsWidget(
