@@ -1,16 +1,17 @@
-import 'package:add/constants/text.dart/colors.dart';
+import 'package:add/constants/constant_colors.dart';
 import 'package:flutter/material.dart';
 
 class PostingTextform extends StatelessWidget {
-  const PostingTextform({
-    super.key,
-    required this.textController,
-    required this.headLineText,
-    this.maxLines = 1,
-    required this.hintText,
-    required this.validator,
-    this.enabled = true,
-  });
+  const PostingTextform(
+      {super.key,
+      required this.textController,
+      required this.headLineText,
+      this.maxLines = 1,
+      required this.hintText,
+      required this.validator,
+      this.enabled = true,
+      this.textInputType = TextInputType.name,
+      this.prefixIcon});
 
   final TextEditingController textController;
   final String hintText;
@@ -18,6 +19,8 @@ class PostingTextform extends StatelessWidget {
   final int maxLines;
   final Function validator;
   final bool enabled;
+  final TextInputType textInputType;
+  final IconData? prefixIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,6 +37,7 @@ class PostingTextform extends StatelessWidget {
           ),
           const SizedBox(height: 15.78),
           TextFormField(
+            keyboardType: textInputType,
             enabled: enabled,
             validator: (value) => validator(value),
             maxLines: maxLines,
@@ -41,6 +45,8 @@ class PostingTextform extends StatelessWidget {
             cursorColor: kPrimaryTextcolor,
             controller: textController,
             decoration: InputDecoration(
+                prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+                prefixIconColor: kPrimaryTextcolor,
                 hintText: hintText,
                 hintStyle:
                     const TextStyle(fontSize: 12, fontFamily: ('Poppins')),

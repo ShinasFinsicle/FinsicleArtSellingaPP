@@ -1,8 +1,9 @@
-import 'package:add/artlistingpages/artlist_page.dart';
-import 'package:add/constants/text.dart/colors.dart';
+import 'package:add/constants/constant_colors.dart';
+import 'package:add/pages/art/artlist_page.dart';
 import 'package:add/pages/authpage/google_auth.dart';
 
 import 'package:add/pages/letsstart/lets_start.dart';
+import 'package:add/provider/artimage_galllery_provider.dart';
 import 'package:add/provider/google_signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => GoogleSignProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ArtImageGallery(),
         ),
       ],
       child: MaterialApp(

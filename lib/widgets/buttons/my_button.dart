@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Mybutton extends StatelessWidget {
-  const Mybutton({super.key, required this.label, required this.ontap});
+  const Mybutton({
+    super.key,
+    required this.label,
+    required this.ontap,
+    this.buttonColor = const Color(0xff40bfff),
+  });
 
   final String label;
   final Function() ontap;
+  final Color buttonColor;
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +20,15 @@ class Mybutton extends StatelessWidget {
         onTap: ontap,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x3d40bfff),
-                blurRadius: 30,
-                offset: Offset(0, 10),
-              ),
-            ],
-            color: Color(0xff40bfff),
-          ),
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x3d40bfff),
+                  blurRadius: 30,
+                  offset: Offset(0, 10),
+                ),
+              ],
+              color: buttonColor),
           padding: const EdgeInsets.all(16),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -35,7 +40,7 @@ class Mybutton extends StatelessWidget {
                 child: Text(
                   label,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 14,
                     fontFamily: "Poppins",

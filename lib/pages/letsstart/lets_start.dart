@@ -1,7 +1,7 @@
-import 'package:add/constants/text.dart/sizedboxwidget.dart';
-import 'package:add/constants/text.dart/text.dart';
+import 'package:add/constants/constant_sizedbox.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/constant_text.dart';
 import '../authpage/google_auth.dart';
 
 class LetsStart extends StatelessWidget {

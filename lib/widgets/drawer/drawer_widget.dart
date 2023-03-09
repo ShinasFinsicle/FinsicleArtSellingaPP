@@ -1,8 +1,8 @@
-import 'package:add/pages/adminpage/art_posting_page.dart';
+import 'package:add/pages/art/art_posting_page.dart';
 import 'package:add/widgets/drawer/drawer_Items_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../user_profle/user_profile.dart';
+import '../../pages/user/user_profile.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});

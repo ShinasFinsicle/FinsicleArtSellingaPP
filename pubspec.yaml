@@ -37,6 +37,8 @@ dependencies:
   firebase_storage: ^11.0.14
   flutter:
     sdk: flutter
+  fluttertoast: ^8.2.1
+  gallery_image_viewer: ^1.2.0
   galleryimage: ^1.2.0
   google_sign_in: ^6.0.1
   image_picker: ^0.8.6+4

@@ -1,4 +1,5 @@
-import 'package:add/constants/text.dart/colors.dart';
+import 'package:add/constants/constant_colors.dart';
+
 import 'package:flutter/material.dart';
 
 showAlerttoUser(context, label, {Function()? onpressed}) => showDialog(
@@ -10,7 +11,7 @@ showAlerttoUser(context, label, {Function()? onpressed}) => showDialog(
           children: [
             Text(
               label,
-              style: TextStyle(color: kPrimaryTextcolor),
+              style: const TextStyle(color: kPrimaryTextcolor),
             ),
           ],
         ),

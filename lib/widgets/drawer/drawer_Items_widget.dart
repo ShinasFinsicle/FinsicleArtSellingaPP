@@ -1,5 +1,5 @@
 // ignore: file_names
-import 'package:add/constants/text.dart/colors.dart';
+import 'package:add/constants/constant_colors.dart';
 import 'package:flutter/material.dart';
 
 class DrawerItemsWidget extends StatelessWidget {

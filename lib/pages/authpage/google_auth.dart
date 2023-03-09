@@ -1,10 +1,10 @@
-import 'package:add/artlistingpages/artlist_page.dart';
-import 'package:add/constants/text.dart/sizedboxwidget.dart';
-import 'package:add/constants/text.dart/text.dart';
+import 'package:add/constants/constant_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
+import '../../constants/constant_sizedbox.dart';
 import '../../provider/google_signin.dart';
 
 class GoogleAuthPage extends StatelessWidget {
