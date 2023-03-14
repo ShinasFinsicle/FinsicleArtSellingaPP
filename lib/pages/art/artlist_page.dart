@@ -53,7 +53,8 @@ class ArtlistScreen extends StatelessWidget {
                     itemCount: snapshot.data?.docs.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 1),
+                      crossAxisCount: 1,
+                    ),
                     itemBuilder: (context, index) {
                       final artDetails = snapshot.data?.docs[index];
                       return GestureDetector(
@@ -66,6 +67,7 @@ class ArtlistScreen extends StatelessWidget {
                                         artspecification:
                                             artDetails['ArtDescription'],
                                         artName: artDetails['ArtName'],
+                                        artPrice: artDetails['ArtPrice'],
                                       )));
                         },
                         child: ArttileWidget(
@@ -80,7 +82,7 @@ class ArtlistScreen extends StatelessWidget {
               return const Center(child: Text('No art Available'));
             }
             return const Center(
-              child: Text('No Arts'),
+              child: Text('No art Available'),
             );
           },
         ));

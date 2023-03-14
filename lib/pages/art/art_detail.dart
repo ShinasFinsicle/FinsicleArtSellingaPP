@@ -1,4 +1,6 @@
 import 'package:add/constants/constant_colors.dart';
+import 'package:add/functions/navigations.dart';
+import 'package:add/pages/cart/cart.dart';
 import 'package:add/widgets/buttons/my_button.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +9,12 @@ class ArtDetail extends StatelessWidget {
       {super.key,
       required this.artspecification,
       required this.artImage,
-      required this.artName});
+      required this.artName,
+      required this.artPrice});
   final String artspecification;
   final String artImage;
   final String artName;
+  final String artPrice;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +59,7 @@ class ArtDetail extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           artspecification,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xff9098b1),
                             fontSize: 12,
                             letterSpacing: 0.50,
@@ -66,7 +70,17 @@ class ArtDetail extends StatelessWidget {
                   ),
                 ),
               ),
-              Mybutton(label: 'Buy Now', ontap: () {})
+              Mybutton(
+                  label: 'Buy Now',
+                  ontap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Cart(
+                                imgUrlCrt: artImage,
+                                artNameCrt: artName,
+                                artPriceCrt: artPrice)));
+                  })
             ],
           ),
         ],

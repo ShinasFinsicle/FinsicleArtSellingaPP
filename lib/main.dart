@@ -5,6 +5,7 @@ import 'package:add/pages/authpage/google_auth.dart';
 import 'package:add/pages/letsstart/lets_start.dart';
 import 'package:add/provider/artimage_galllery_provider.dart';
 import 'package:add/provider/google_signin.dart';
+import 'package:add/provider/user/address_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => ArtImageGallery(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => AddressProvider(),
+        ),
       ],
       child: MaterialApp(
           theme: ThemeData(
@@ -37,13 +41,15 @@ class MyApp extends StatelessWidget {
                 const TextTheme(bodyLarge: TextStyle(color: kPrimaryTextcolor)),
             appBarTheme: const AppBarTheme(
                 titleTextStyle: TextStyle(
+                  fontSize: 16,
                   color: kPrimaryTextcolor,
                   fontFamily: ('Poppins'),
                 ),
-                iconTheme: IconThemeData(color: kPrimaryTextcolor),
-                backgroundColor: Colors.white,
-                elevation: 1.0 // set the background color to white
+                iconTheme: IconThemeData(
+                  color: kPrimaryTextcolor,
                 ),
+                backgroundColor: Colors.white,
+                elevation: 1.0),
           ),
           debugShowCheckedModeBanner: false,
           home: const ListenAuthChanges()),

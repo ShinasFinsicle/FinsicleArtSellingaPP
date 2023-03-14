@@ -68,29 +68,7 @@ class ArtPostingPage extends StatelessWidget {
                       label: value.imageFileList.isEmpty
                           ? "Upload images"
                           : "Upload More Images",
-                      ontap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Row(
-                              children: [
-                                Icon(Icons.thumb_up, color: Colors.white),
-                                SizedBox(width: 10),
-                                Text('Great job!',
-                                    style: TextStyle(color: Colors.white)),
-                              ],
-                            ),
-                            backgroundColor: Colors.green,
-                            duration: Duration(seconds: 3),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            behavior: SnackBarBehavior.floating,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                          ),
-                        );
-                      },
-                      // ontap: () => value.getSelectedImages(),
+                      ontap: () => value.getSelectedImages(),
                       buttonColor: kPrimaryTextcolor,
                     ),
                   ),
@@ -100,9 +78,10 @@ class ArtPostingPage extends StatelessWidget {
                           ontap: () async {
                             if (_formKey.currentState!.validate()) {
                               if (value.imageFileList.isEmpty) {
-                                alertPopup(
+                                AlertPopup.alertPopup(context,
                                     color: Colors.red,
-                                    messgae: "Please Upload Image");
+                                    message: 'Please Upload Images',
+                                    icon: Icons.error);
                               } else {
                                 value.uploadchanger();
                                 await value.uploadArtdetailstoFirebase();
@@ -113,6 +92,11 @@ class ArtPostingPage extends StatelessWidget {
                                 value.imgUrls.clear();
                                 value.clearImage();
                                 value.uploadchanger();
+                                // ignore: use_build_context_synchronously
+                                AlertPopup.alertPopup(context,
+                                    message: "Uploaded Sucessfully",
+                                    color: Colors.green,
+                                    icon: Icons.thumb_up_sharp);
                               }
                             } else {}
                           })

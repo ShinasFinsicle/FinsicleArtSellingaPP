@@ -15,87 +15,44 @@ class ArttileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-              color: const Color(0xffeaefff),
-              width: 1,
-            ),
-            color: Colors.white),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(
-              child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: Color(0xffeaefff),
-                      )),
-                  child: Image.network(artImages)),
-            ),
-            const SizedBox(height: 8),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
+      padding: const EdgeInsets.all(10.0),
+      child: SizedBox(
+        child: Card(
+          child: SizedBox(
+            child: Column(
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 133,
-                      child: Text(
-                        artName,
-                        style: const TextStyle(
-                          color: Color(0xff223263),
-                          fontSize: 12,
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 0.50,
-                        ),
-                      ),
+                Expanded(
+                  child: Card(
+                    child: Image.network(
+                      artImages,
+                      fit: BoxFit.cover,
                     ),
-                  ],
+                  ),
                 ),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          artPrice,
-                          style: const TextStyle(
-                            color: Color(0xff40bfff),
-                            fontSize: 12,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.50,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                      ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    artName,
+                    style: const TextStyle(
+                      color: kPrimaryTextcolor,
+                      fontSize: 15,
+                      fontFamily: ('Poppins'),
+                      letterSpacing: 0.50,
                     ),
-                  ],
+                  ),
                 ),
+                Text(
+                  ' ₹ $artPrice',
+                  style: const TextStyle(
+                    color: Color(0xff40bfff),
+                    fontSize: 15,
+                    fontFamily: ('Poppins'),
+                    letterSpacing: 0.50,
+                  ),
+                )
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
