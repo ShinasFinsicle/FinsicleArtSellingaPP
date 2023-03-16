@@ -7,10 +7,15 @@ class AddressProvider extends ChangeNotifier {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController pincodeController = TextEditingController();
-  final TextEditingController stateController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
+  final TextEditingController stateController =
+      TextEditingController(text: "State");
+  final TextEditingController countryController =
+      TextEditingController(text: "Country");
+  final TextEditingController cityController =
+      TextEditingController(text: "City");
   final TextEditingController buildingNameController = TextEditingController();
   bool uploading = false;
+  bool colorChange = false;
   uploadchanger() {
     uploading = !uploading;
     notifyListeners();
@@ -26,9 +31,14 @@ class AddressProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  onTapColorchange() {
+    colorChange = !colorChange;
+    notifyListeners();
+  }
+
   Future<void> uploadUserdetailstoFirebase() async {
     try {
-      FirebaseFirestore.instance.collection('user').doc(_user.uid).set(({
+      FirebaseFirestore.instance.collection('user').doc().set(({
             'name': nameController.text,
             'phonenmuber': phoneNumberController.text,
             'pincode': pincodeController.text,

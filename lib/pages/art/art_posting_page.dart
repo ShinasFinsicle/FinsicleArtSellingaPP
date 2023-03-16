@@ -7,7 +7,7 @@ import 'package:add/widgets/buttons/my_button.dart';
 import 'package:add/widgets/posting_text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../provider/artimage_galllery_provider.dart';
+import '../../provider/art/artimage_galllery_provider.dart';
 
 class ArtPostingPage extends StatelessWidget {
   ArtPostingPage({super.key});
@@ -47,6 +47,14 @@ class ArtPostingPage extends StatelessWidget {
                     hintText: "Enter Price of the Art",
                     textInputType: TextInputType.number,
                     textController: value.priceController,
+                    validator: (value) => validatefields(value),
+                  ),
+                  PostingTextform(
+                    prefixIcon: Icons.currency_rupee,
+                    headLineText: "Enter Shipping Cost",
+                    hintText: "Enter Shipping Cost",
+                    textInputType: TextInputType.number,
+                    textController: value.shipppingpPiceController,
                     validator: (value) => validatefields(value),
                   ),
                   value.imageFileList.isNotEmpty
@@ -90,6 +98,7 @@ class ArtPostingPage extends StatelessWidget {
                                 value.priceController.clear();
                                 value.imageFileList.clear();
                                 value.imgUrls.clear();
+                                value.shipppingpPiceController.clear();
                                 value.clearImage();
                                 value.uploadchanger();
                                 // ignore: use_build_context_synchronously

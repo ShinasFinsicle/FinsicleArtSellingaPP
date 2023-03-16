@@ -1,10 +1,12 @@
 import 'package:add/constants/constant_colors.dart';
 import 'package:add/pages/art/art_detail.dart';
+import 'package:add/provider/art/art_details_provider.dart';
 
 import 'package:add/widgets/art_tlie_widget.dart';
 import 'package:add/widgets/drawer/drawer_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ArtlistScreen extends StatelessWidget {
   const ArtlistScreen({super.key});
@@ -22,6 +24,14 @@ class ArtlistScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontFamily: ('Poppins')),
           ),
+          //search button
+          //       // actions: [
+          //   Padding(
+          //       padding: const EdgeInsets.all(8.0),
+          //       child: IconButton(
+          //           onPressed: () {}, icon: const Icon(Icons.search)))
+          // ],
+//serachbutton
           bottom: PreferredSize(
             preferredSize:
                 const Size.fromHeight(4.0), // set the height of the bottom bar
@@ -41,7 +51,10 @@ class ArtlistScreen extends StatelessWidget {
           ),
         ),
         body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          stream: FirebaseFirestore.instance.collection('art').snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('art')
+              .orderBy('uploadedat', descending: true)
+              .snapshots(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -59,16 +72,22 @@ class ArtlistScreen extends StatelessWidget {
                       final artDetails = snapshot.data?.docs[index];
                       return GestureDetector(
                         onTap: () {
+                          final ArtModel newModel = ArtModel(
+                            artAdminUid: artDetails['ArtAdmin'],
+                            artDescription: artDetails['ArtDescription'],
+                            artImages: artDetails['ArtImages'],
+                            artName: artDetails['ArtName'],
+                            artPrice: artDetails['ArtPrice'],
+                            shippingCost: artDetails['ShippingCost'],
+                          );
+                          Provider.of<ArtDetailsProvider>(context,
+                                  listen: false)
+                              .setArtModel(newModel);
+
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ArtDetail(
-                                        artImage: artDetails['ArtImages'][0],
-                                        artspecification:
-                                            artDetails['ArtDescription'],
-                                        artName: artDetails['ArtName'],
-                                        artPrice: artDetails['ArtPrice'],
-                                      )));
+                                  builder: (context) => const ArtDetail()));
                         },
                         child: ArttileWidget(
                           artName: artDetails['ArtName'],

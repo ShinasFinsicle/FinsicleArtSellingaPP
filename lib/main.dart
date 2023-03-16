@@ -3,9 +3,13 @@ import 'package:add/pages/art/artlist_page.dart';
 import 'package:add/pages/authpage/google_auth.dart';
 
 import 'package:add/pages/letsstart/lets_start.dart';
-import 'package:add/provider/artimage_galllery_provider.dart';
-import 'package:add/provider/google_signin.dart';
+import 'package:add/provider/art/art_details_provider.dart';
+import 'package:add/provider/art/artimage_galllery_provider.dart';
+import 'package:add/provider/auth_provider/google_sign_provider.dart';
+import 'package:add/provider/payment_provider/payment_selector_provider.dart';
+import 'package:add/provider/user/address_model_provider.dart';
 import 'package:add/provider/user/address_provider.dart';
+import 'package:add/provider/user/profile_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,9 +37,22 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => AddressProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => ProfileProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ArtDetailsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AddressDetailsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PaymentSelectionProvider(),
+        ),
       ],
       child: MaterialApp(
           theme: ThemeData(
+            primarySwatch: Colors.blue,
             fontFamily: ('Poppins reg'),
             textTheme:
                 const TextTheme(bodyLarge: TextStyle(color: kPrimaryTextcolor)),

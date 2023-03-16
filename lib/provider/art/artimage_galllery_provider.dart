@@ -11,6 +11,8 @@ class ArtImageGallery extends ChangeNotifier {
   final TextEditingController artNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
+  final TextEditingController shipppingpPiceController =
+      TextEditingController();
   final picker = ImagePicker();
   List<XFile> imageFileList = [];
   final user = FirebaseAuth.instance.currentUser!;
@@ -60,7 +62,9 @@ class ArtImageGallery extends ChangeNotifier {
             'ArtDescription': descriptionController.text,
             'ArtPrice': priceController.text,
             'ArtAdmin': user.uid,
-            'ArtImages': imgUrls
+            'ArtImages': imgUrls,
+            'uploadedat': Timestamp.now(),
+            'ShippingCost': shipppingpPiceController.text
           }));
     } catch (e) {
       print(e);
