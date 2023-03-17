@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -57,12 +57,17 @@ class ArtImageGallery extends ChangeNotifier {
   Future<void> uploadArtdetailstoFirebase() async {
     try {
       await uploadMutipleFile(imageFileList);
-      await FirebaseFirestore.instance.collection('art').doc().set(({
+      final artId = const Uuid().v4();
+      await FirebaseFirestore.instance.collection('art').doc(artId).set(({
             'ArtName': artNameController.text,
+            'ArtId': artId,
             'ArtDescription': descriptionController.text,
             'ArtPrice': priceController.text,
             'ArtAdmin': user.uid,
             'ArtImages': imgUrls,
+            'sold': false,
+            'ArtistEmail': user.email,
+            'buyerUid': 'addbuyeruid',
             'uploadedat': Timestamp.now(),
             'ShippingCost': shipppingpPiceController.text
           }));

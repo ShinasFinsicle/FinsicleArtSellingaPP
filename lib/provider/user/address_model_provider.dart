@@ -19,6 +19,12 @@ class AddressModel {
 }
 
 class AddressDetailsProvider extends ChangeNotifier {
+  bool loadingOnCheckOut = false;
+  loadingOnCheckOutchanger() {
+    loadingOnCheckOut = !loadingOnCheckOut;
+    notifyListeners();
+  }
+
   AddressModel? addressModel;
   setAddressModel(AddressModel value) {
     addressModel = AddressModel(

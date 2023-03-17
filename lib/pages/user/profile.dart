@@ -54,8 +54,9 @@ class Profile extends StatelessWidget {
             ),
             CoustomElevatedButoon(
                 label: "Log out",
-                ontap: () {
-                  value.logout();
+                ontap: () async {
+                  await value.logout();
+                  value.rebuild();
                 },
                 backGroundColor: kPrimaryTextcolor)
           ],

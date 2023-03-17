@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ArtDetailsProvider extends ChangeNotifier {
   ArtModel? artModels;
-
   setArtModel(ArtModel value) {
     artModels = ArtModel(
       artName: value.artName,
@@ -11,6 +10,7 @@ class ArtDetailsProvider extends ChangeNotifier {
       artImages: value.artImages,
       artPrice: value.artPrice,
       shippingCost: value.shippingCost,
+      artId: value.artId,
     );
     notifyListeners();
   }
@@ -23,8 +23,10 @@ class ArtModel {
   final String artPrice;
   final String shippingCost;
   final List artImages;
+  final String artId;
   ArtModel(
-      {required this.shippingCost,
+      {required this.artId,
+      required this.shippingCost,
       required this.artAdminUid,
       required this.artDescription,
       required this.artPrice,

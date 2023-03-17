@@ -7,6 +7,8 @@ import 'package:add/provider/payment_provider/payment_selector_provider.dart';
 import 'package:add/provider/user/address_model_provider.dart';
 import 'dart:convert';
 import 'package:add/widgets/buttons/my_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +32,7 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   final _razorpay = Razorpay();
-
+  final _user = FirebaseAuth.instance.currentUser!;
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -167,6 +169,9 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
+    String _artId = Provider.of<ArtDetailsProvider>(context, listen: false)
+        .artModels!
+        .artId;
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -186,8 +191,8 @@ class _CartState extends State<Cart> {
         builder: (context, value, child) => SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                  padding: const EdgeInsets.all(8.0), child: CartListTile()),
+              const Padding(
+                  padding: EdgeInsets.all(8.0), child: CartListTile()),
               const SizedBox(
                 height: 20,
               ),
@@ -209,31 +214,49 @@ class _CartState extends State<Cart> {
                 padding: EdgeInsets.fromLTRB(22.0, 0, 0, 0),
                 child: PaymentMethodSelection(),
               ),
-              Mybutton(
-                  label: "Check Out",
-                  ontap: () {
-                    String? _pay = Provider.of<PaymentSelectionProvider>(
-                            context,
-                            listen: false)
-                        .selectedPaymentMedthod;
+              !value.loadingOnCheckOut
+                  ? Mybutton(
+                      label: "Check Out",
+                      ontap: () async {
+                        String? _pay = Provider.of<PaymentSelectionProvider>(
+                                context,
+                                listen: false)
+                            .selectedPaymentMedthod;
 
-                    if (_pay != null) {
-                      if (_pay == "Cash on Delivery") {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const CashSucessScreen()));
-                      } else {
-                        createOrder();
-                      }
-                    } else {
-                      AlertPopup.alertPopup(context,
-                          message: "Select Payment Metod",
-                          color: Colors.red,
-                          icon: Icons.paypal_sharp);
-                    }
-                  })
+                        if (_pay != null) {
+                          if (_pay == "Cash on Delivery") {
+                            value.loadingOnCheckOutchanger();
+                            await FirebaseFirestore.instance
+                                .collection('art')
+                                .doc(_artId)
+                                .update({
+                              'buyerUid': _user.uid,
+                              'sold': true,
+                              'uploadedat': Timestamp.now()    
+                            });
+                            // ignore: use_build_context_synchronously
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const CashSucessScreen()));
+                            value.loadingOnCheckOutchanger();
+                          } else {
+                            createOrder();
+                          }
+                        } else {
+                          AlertPopup.alertPopup(context,
+                              message: "Select Payment Metod",
+                              color: Colors.red,
+                              icon: Icons.paypal_sharp);
+                        }
+                      })
+                  : Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: CircularProgressIndicator(
+                        color: kBackgroundcolor,
+                      ),
+                    )
             ],
           ),
         ),

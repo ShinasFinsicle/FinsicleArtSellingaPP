@@ -5,6 +5,7 @@ import 'package:add/pages/track_your_order/track_your_order.dart';
 import 'package:add/widgets/drawer/drawer_Items_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../pages/receivedorders/received_orders.dart';
 import '../../pages/user/profile.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -37,15 +38,20 @@ class DrawerWidget extends StatelessWidget {
           DrawerItemsWidget(
               icon: const Icon(Icons.sim_card_download_sharp),
               title: "Received Orders",
-              ontap: () {}),
+              ontap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ReceivedOrders()),
+                );
+              }),
           DrawerItemsWidget(
               icon: const Icon(Icons.directions_bike),
               title: "Track Your Orders",
               ontap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const TrackYourOrder()),
+                  MaterialPageRoute(builder: (context) => TrackYourOrder()),
                 );
               }),
           DrawerItemsWidget(

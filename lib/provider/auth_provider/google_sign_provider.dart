@@ -13,6 +13,10 @@ class GoogleSignProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  rebuild() {
+    notifyListeners(); //wheni click logut page is not refreshing thats why iam calling this function
+  }
+
   GoogleSignInAccount get user => _user!;
   Future googleLogin1(context) async {
     // showspinnering(true);
