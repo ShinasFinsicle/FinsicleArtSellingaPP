@@ -7,6 +7,7 @@ import 'package:add/provider/art/art_details_provider.dart';
 import 'package:add/provider/art/artimage_galllery_provider.dart';
 import 'package:add/provider/auth_provider/google_sign_provider.dart';
 import 'package:add/provider/payment_provider/payment_selector_provider.dart';
+import 'package:add/provider/status/statusupdate_provider.dart';
 import 'package:add/provider/user/address_model_provider.dart';
 import 'package:add/provider/user/address_provider.dart';
 import 'package:add/provider/user/profile_provider.dart';
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => PaymentSelectionProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => StatusUpdateProvider(),
         ),
       ],
       child: MaterialApp(

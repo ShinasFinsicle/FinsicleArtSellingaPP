@@ -8,8 +8,10 @@ class AddressModel {
   final String uid;
   final String pincode;
   final String phonenumber;
+  final String addressId;
   AddressModel(
-      {required this.pincode,
+      {required this.addressId,
+      required this.pincode,
       required this.phonenumber,
       required this.buildingname,
       required this.city,
@@ -28,6 +30,7 @@ class AddressDetailsProvider extends ChangeNotifier {
   AddressModel? addressModel;
   setAddressModel(AddressModel value) {
     addressModel = AddressModel(
+        addressId: value.addressId,
         buildingname: value.buildingname,
         city: value.city,
         name: value.name,

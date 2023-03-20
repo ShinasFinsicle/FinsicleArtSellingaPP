@@ -10,7 +10,7 @@ class TrackYourOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Order"),
+          title: const Text("Track Your Order"),
         ),
         body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: FirebaseFirestore.instance
@@ -37,6 +37,7 @@ class TrackYourOrder extends StatelessWidget {
                         orderDate: artDetails['uploadedat'],
                         price: artDetails['ArtPrice'],
                         artistEmail: artDetails['ArtistEmail'],
+                        orderStatus: artDetails['Shipment'],
                       ),
                     );
                   },

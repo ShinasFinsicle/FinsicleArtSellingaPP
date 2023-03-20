@@ -1,16 +1,18 @@
 import 'package:add/constants/constant_colors.dart';
 import 'package:add/provider/art/art_details_provider.dart';
 import 'package:add/widgets/buttons/my_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../shipment/shipment.dart';
+import '../admin/admin_uid.dart';
 
 class ArtDetail extends StatelessWidget {
-  const ArtDetail({
+  ArtDetail({
     super.key,
   });
-
+  final _user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Consumer<ArtDetailsProvider>(
@@ -68,12 +70,16 @@ class ArtDetail extends StatelessWidget {
                     ),
                   ),
                 ),
-                Mybutton(
-                    label: 'Buy Now',
-                    ontap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Shipment()));
-                    })
+                _user.uid == adminUid
+                    ? Container()
+                    : Mybutton(
+                        label: 'Buy Now',
+                        ontap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Shipment()));
+                        })
               ],
             ),
           ],

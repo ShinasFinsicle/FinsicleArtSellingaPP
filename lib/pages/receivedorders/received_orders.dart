@@ -1,19 +1,23 @@
+import 'package:add/pages/receivedorders/widget/received_order_tile.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ReceivedOrders extends StatelessWidget {
-  const ReceivedOrders({super.key});
-
+  ReceivedOrders({super.key});
+  final _user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Received Orders "),
+        title: const Text("Received Orders "),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
             .collection('art')
-            .where('sold', isEqualTo: false)
+            .where('sold', isEqualTo: true)
+            .where('ArtAdmin', isEqualTo: _user.uid)
             .orderBy('uploadedat', descending: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -24,10 +28,15 @@ class ReceivedOrders extends StatelessWidget {
           } else if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.data?.docs.isEmpty != true) {
               return ListView.builder(
-                  itemCount: 3,
+                  itemCount: snapshot.data?.docs.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text("Art name"),
+                    final artDetails = snapshot.data?.docs[index];
+                    return ReceivedOrderTile(
+                      artName: artDetails['ArtName'],
+                      orderDate: artDetails['uploadedat'],
+                      buyerAddressUid: artDetails['buyeraddressUid'],
+                      artId: artDetails['ArtId'],
+                      orderstatus: artDetails['Shipment'],
                     );
                   });
             }

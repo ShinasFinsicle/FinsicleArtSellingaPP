@@ -57,7 +57,8 @@ class Shipment extends StatelessWidget {
                                         state: address['state'],
                                         uid: address['uid'],
                                         phonenumber: address['phonenmuber'],
-                                        pincode: address['pincode']);
+                                        pincode: address['pincode'],
+                                        addressId: address['addressUid']);
                                     Provider.of<AddressDetailsProvider>(context,
                                             listen: false)
                                         .setAddressModel(newModel);

@@ -11,11 +11,13 @@ class OrderTile extends StatelessWidget {
     required this.orderDate,
     required this.price,
     required this.artistEmail,
+    required this.orderStatus,
   });
   final String artName;
   final Timestamp orderDate;
   final String price;
   final String artistEmail;
+  final String orderStatus;
   @override
   Widget build(BuildContext context) {
     final day = orderDate.toDate().day;
@@ -76,10 +78,10 @@ class OrderTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.55),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.40),
                 Expanded(
                   child: Text(
-                    "Not packed",
+                    orderStatus,
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       color: Color(0xff223263),
@@ -163,7 +165,7 @@ class OrderTile extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           )
         ],

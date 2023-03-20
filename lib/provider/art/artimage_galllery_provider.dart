@@ -68,7 +68,9 @@ class ArtImageGallery extends ChangeNotifier {
             'sold': false,
             'ArtistEmail': user.email,
             'buyerUid': 'addbuyeruid',
+            'Shipment': 'notpacked',
             'uploadedat': Timestamp.now(),
+            'buyeraddressUid': 'UpdateAddressUidofthebuyer',
             'ShippingCost': shipppingpPiceController.text
           }));
     } catch (e) {

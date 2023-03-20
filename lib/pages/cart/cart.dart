@@ -230,9 +230,10 @@ class _CartState extends State<Cart> {
                                 .collection('art')
                                 .doc(_artId)
                                 .update({
+                              'buyeraddressUid': value.addressModel!.addressId,
                               'buyerUid': _user.uid,
                               'sold': true,
-                              'uploadedat': Timestamp.now()    
+                              'uploadedat': Timestamp.now()
                             });
                             // ignore: use_build_context_synchronously
                             Navigator.push(

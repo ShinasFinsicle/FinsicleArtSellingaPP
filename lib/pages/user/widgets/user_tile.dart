@@ -16,10 +16,10 @@ class UserTile extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         radius: 25.0,
-        backgroundImage: NetworkImage(_user.photoURL!),
+        // backgroundImage: NetworkImage(_user.photoURL!),
       ),
       title: Text(
-        _user.displayName!,
+        _user.displayName == null ? "Admin" : _user.displayName!,
         style: const TextStyle(
           fontSize: 15,
           color: kPrimaryTextcolor,

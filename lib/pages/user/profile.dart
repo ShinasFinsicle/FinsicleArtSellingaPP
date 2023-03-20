@@ -1,3 +1,5 @@
+import 'package:add/functions/alert_functions.dart';
+import 'package:add/pages/admin/admin_uid.dart';
 import 'package:add/pages/user/widgets/user_tile.dart';
 import 'package:add/provider/auth_provider/google_sign_provider.dart';
 import 'package:add/widgets/buttons/coustom_elevated_button.dart';
@@ -54,9 +56,13 @@ class Profile extends StatelessWidget {
             ),
             CoustomElevatedButoon(
                 label: "Log out",
-                ontap: () async {
-                  await value.logout();
-                  value.rebuild();
+                ontap: () {
+                  showAlerttoUser(context, "Are you sure want to log out?",
+                      onpressed: () {
+                    _user.uid == adminUid
+                        ? value.adminlogout(context)
+                        : value.logout(context);
+                  });
                 },
                 backGroundColor: kPrimaryTextcolor)
           ],

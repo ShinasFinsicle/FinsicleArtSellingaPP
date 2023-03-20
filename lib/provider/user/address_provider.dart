@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class AddressProvider extends ChangeNotifier {
   final _user = FirebaseAuth.instance.currentUser!;
@@ -38,14 +39,16 @@ class AddressProvider extends ChangeNotifier {
 
   Future<void> uploadUserdetailstoFirebase() async {
     try {
-      FirebaseFirestore.instance.collection('user').doc().set(({
+      final addressId = const Uuid().v4();
+      FirebaseFirestore.instance.collection('user').doc(addressId).set(({
             'name': nameController.text,
             'phonenmuber': phoneNumberController.text,
             'pincode': pincodeController.text,
             'state': stateController.text,
             'city': cityController.text,
             'buildingname': buildingNameController.text,
-            'uid': _user.uid
+            'uid': _user.uid,
+            'addressUid': addressId
           }));
     } catch (e) {
       print(e);

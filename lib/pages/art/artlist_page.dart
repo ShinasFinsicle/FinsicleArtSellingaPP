@@ -14,24 +14,16 @@ class ArtlistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
       appBar: AppBar(
         title: const Text(
-          "Welcome Shinas",
+          "Welcome",
           style: TextStyle(
               color: kPrimaryTextcolor,
               fontSize: 14,
               fontWeight: FontWeight.bold,
               fontFamily: ('Poppins')),
         ),
-        //search button
-        //       // actions: [
-        //   Padding(
-        //       padding: const EdgeInsets.all(8.0),
-        //       child: IconButton(
-        //           onPressed: () {}, icon: const Icon(Icons.search)))
-        // ],
-//serachbutton
         bottom: PreferredSize(
           preferredSize:
               const Size.fromHeight(4.0), // set the height of the bottom bar
@@ -86,7 +78,7 @@ class ArtlistScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ArtDetail()));
+                                builder: (context) => ArtDetail()));
                       },
                       child: ArttileWidget(
                         artName: artDetails['ArtName'],

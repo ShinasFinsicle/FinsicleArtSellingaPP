@@ -1,4 +1,5 @@
 import 'package:add/functions/alert_popup.dart';
+import 'package:add/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -42,9 +43,30 @@ class GoogleSignProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future logout() async {
-    await googleSignIn.disconnect();
-    FirebaseAuth.instance.signOut();
+  Future logout(context) async {
+    try {
+      await googleSignIn.disconnect();
+      await FirebaseAuth.instance.signOut();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ListenAuthChanges()),
+      );
+    } catch (e) {
+      print(e);
+    }
+
+    notifyListeners();
+  }
+
+  Future adminlogout(context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ListenAuthChanges()),
+      );
+    } catch (e) {}
+
     notifyListeners();
   }
 }
